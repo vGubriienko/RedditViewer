@@ -9,3 +9,4 @@ Simple Reddit Viewer
 * iOS 11.0
 * Universal app
 * No pods
+* MVVM+C design architecture
