@@ -9,20 +9,24 @@
 import UIKit
 
 
-class EntriesListViewController: UIViewController {
+class EntriesListViewController: UIViewController, MVVMViewController {
 
     // MARK: - Outlets
     
     @IBOutlet private weak var entriesTableView: UITableView!
     
+    // MARK: - Public Properties
+    
+    var viewModel: EntriesListViewModel!
+    
     // MARK: - Lifecycle
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        
     }
 
     /*
@@ -59,5 +63,14 @@ extension EntriesListViewController: UITableViewDataSource {
         return cell
     }
     
+}
+
+// TabeView Delegate mock
+extension EntriesListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        viewModel.showPicture(for: "")
+    }
     
 }

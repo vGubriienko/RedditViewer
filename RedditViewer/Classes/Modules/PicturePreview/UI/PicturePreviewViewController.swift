@@ -9,13 +9,17 @@
 import UIKit
 
 
-class PicturePreviewViewController: UIViewController {
+class PicturePreviewViewController: UIViewController, MVVMViewController {
 
     // MARK: - Outlets
     
     @IBOutlet private weak var saveButton: UIButton!
     @IBOutlet private weak var loadingActivityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var previewImageView: UIImageView!
+    
+    // MARK: - Public Properties
+    
+    var viewModel: PicturePreviewViewModel!
     
     // MARK: - Lifecycle
     
