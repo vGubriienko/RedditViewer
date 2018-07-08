@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		716EB15420F22EA3001A6B37 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716EB15320F22EA3001A6B37 /* ViewController.swift */; };
+		716EB15420F22EA3001A6B37 /* EntriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716EB15320F22EA3001A6B37 /* EntriesListViewController.swift */; };
+		716EB15720F23BB8001A6B37 /* PicturePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716EB15620F23BB8001A6B37 /* PicturePreviewViewController.swift */; };
+		716EB15920F244F9001A6B37 /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716EB15820F244F9001A6B37 /* EntryCell.swift */; };
 		7186312F20F2259600D5A118 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7186312E20F2259600D5A118 /* AppDelegate.swift */; };
 		7186313420F2259600D5A118 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7186313220F2259600D5A118 /* Main.storyboard */; };
 		7186313620F2259700D5A118 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7186313520F2259700D5A118 /* Assets.xcassets */; };
@@ -16,7 +18,9 @@
 
 /* Begin PBXFileReference section */
 		716EB15120F22C84001A6B37 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		716EB15320F22EA3001A6B37 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		716EB15320F22EA3001A6B37 /* EntriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesListViewController.swift; sourceTree = "<group>"; };
+		716EB15620F23BB8001A6B37 /* PicturePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturePreviewViewController.swift; sourceTree = "<group>"; };
+		716EB15820F244F9001A6B37 /* EntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
 		7186312B20F2259600D5A118 /* RedditViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedditViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7186312E20F2259600D5A118 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7186313320F2259600D5A118 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -43,6 +47,16 @@
 				7186313720F2259700D5A118 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		716EB15520F23B2D001A6B37 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				716EB15320F22EA3001A6B37 /* EntriesListViewController.swift */,
+				716EB15620F23BB8001A6B37 /* PicturePreviewViewController.swift */,
+				716EB15820F244F9001A6B37 /* EntryCell.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		7186312220F2259600D5A118 = {
@@ -93,7 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				7186312E20F2259600D5A118 /* AppDelegate.swift */,
-				716EB15320F22EA3001A6B37 /* ViewController.swift */,
+				716EB15520F23B2D001A6B37 /* UI */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -169,8 +183,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				716EB15420F22EA3001A6B37 /* ViewController.swift in Sources */,
+				716EB15920F244F9001A6B37 /* EntryCell.swift in Sources */,
+				716EB15420F22EA3001A6B37 /* EntriesListViewController.swift in Sources */,
 				7186312F20F2259600D5A118 /* AppDelegate.swift in Sources */,
+				716EB15720F23BB8001A6B37 /* PicturePreviewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
