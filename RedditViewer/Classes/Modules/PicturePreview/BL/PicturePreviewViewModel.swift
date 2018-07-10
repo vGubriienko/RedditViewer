@@ -6,9 +6,14 @@
 //  Copyright © 2018 Viktor Gubriienko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 protocol PicturePreviewViewModel: class, MVVMViewModel {
+    
+    var image: Observable<UIImage?> { get }
+    var isLoadingImage: Observable<Bool> { get }
+    
+    func refreshImage()
     
 }

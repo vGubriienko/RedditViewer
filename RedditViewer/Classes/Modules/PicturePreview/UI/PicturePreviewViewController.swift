@@ -28,6 +28,23 @@ class PicturePreviewViewController: UIViewController, MVVMViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bindViewModel()
+        
+        viewModel.refreshImage()
+    }
+    
+    func bindViewModel() {
+        viewModel.image.observe = { [weak self] _, image in
+            self?.previewImageView.image = image
+            self?.previewImageView.isHidden = (image == nil)
+            self?.saveButton.isEnabled = (image != nil)
+        }
+        
+        viewModel.isLoadingImage.observe = { [weak self] _, isLoading in
+            isLoading
+                ? self?.loadingActivityIndicator.startAnimating()
+                : self?.loadingActivityIndicator.stopAnimating()
+        }
     }
     
     // MARK: - Actions
@@ -37,7 +54,7 @@ class PicturePreviewViewController: UIViewController, MVVMViewController {
     }
     
     @IBAction private func tapSave() {
-        
+        // TODO: implement saving
     }
     
 }

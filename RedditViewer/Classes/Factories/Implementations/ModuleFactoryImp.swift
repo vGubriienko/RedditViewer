@@ -13,13 +13,13 @@ import UIKit
 final class ModuleFactoryImp: TopEntriesModuleFactory, PicturePreviewModuleFactory {
     
     func makeTopEntriesModule() -> (moduleIO: EntriesListModuleIO, presentable: Presentable) {
-        let viewModel = EntriesListViewModelImp()
+        let viewModel = EntriesListViewModelImp(entriesProvider: RedditDataProvider())
         let topEntriesVC = EntriesListViewController.controllerFromStoryboard(.main, viewModel: viewModel)
         return (viewModel, topEntriesVC)
     }
     
     func makePicturePreviewModule(picture: Picture) -> (moduleIO: PicturePreviewModuleIO, presentable: Presentable) {
-        let viewModel = PicturePreviewViewModelImp(picture: picture)
+        let viewModel = PicturePreviewViewModelImp(picture: picture, pictureProvider: RedditDataProvider())
         let previewVC = PicturePreviewViewController.controllerFromStoryboard(.main, viewModel: viewModel)
         return (viewModel, previewVC)
     }
