@@ -9,4 +9,6 @@
 import Foundation
 
 
-protocol Picture { }
+protocol Picture {
+    var pictureURL: URL { get }
+}

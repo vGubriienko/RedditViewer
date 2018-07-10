@@ -11,6 +11,11 @@ import Foundation
 
 protocol EntriesListViewModel: class, MVVMViewModel {
     
+    var entries: Observable<[RedditEntry]> { get }
+    var isLoadingEntries: Observable<Bool> { get }
+    
+    func refreshEntries()
+    func loadMoreEntries()
     func showPicture(for entryID: EntryID)
     
 }

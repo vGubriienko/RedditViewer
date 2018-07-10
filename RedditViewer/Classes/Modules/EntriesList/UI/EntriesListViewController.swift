@@ -19,6 +19,10 @@ class EntriesListViewController: UIViewController, MVVMViewController {
     
     var viewModel: EntriesListViewModel!
     
+    // MARK: - Private Properties
+    
+    let refreshControl: UIRefreshControl = UIRefreshControl()
+    
     // MARK: - Lifecycle
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
@@ -26,41 +30,98 @@ class EntriesListViewController: UIViewController, MVVMViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupTableView()
+        bindViewModel()
         
+        viewModel.refreshEntries()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    // MARK: - Private Methods
+    
+    private func setupTableView() {
+        entriesTableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
+        //refreshControl.tintColor = UIColor.red
+        entriesTableView.addSubview(refreshControl)
     }
-    */
+    
+    @objc private func handleRefresh() {
+        viewModel.refreshEntries()
+    }
+    
+    private func bindViewModel() {
+        viewModel.entries.observe = { [weak self] _, _ in
+            self?.entriesTableView.reloadData()
+        }
+        
+        viewModel.isLoadingEntries.observe = { [weak self] _, isLoading in
+            if isLoading == false {
+                self?.refreshControl.endRefreshing()
+                self?.entriesTableView.visibleCells
+                    .compactMap { $0 as? LoadingCell }
+                    .first?
+                    .loadingIndicator
+                    .stopAnimating()
+            }
+        }
+    }
 
 }
 
-// TableView DS mock
+
 extension EntriesListViewController: UITableViewDataSource {
     
+    enum Sections: Int {
+        case Entries     = 0
+        case LoadingCell = 1
+        
+        static let count = 2
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return Sections.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        switch Sections(rawValue: section)! {
+        case .Entries:      return viewModel.entries.value.count
+        case .LoadingCell:  return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EntryCell", for: indexPath) as! EntryCell
-        
-        let model = EntryCell.Model(ID: "",
-                                    author: "John Dou",
-                                    postDate: Date(),
-                                    description: "Test description",
-                                    commentsCount: 154,
-                                    thumb: nil)
-        
-        cell.model = model
-        
-        return cell
+        switch Sections(rawValue: indexPath.section)! {
+        case .Entries:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EntryCell", for: indexPath) as! EntryCell
+            
+            // TODO: move out conversion
+            // TODO: add thumb loading
+            let model = viewModel.entries.value[indexPath.row]
+            
+            let cellModel = EntryCell.Model(ID: model.ID,
+                                            author: model.author,
+                                            postDate: model.postDate,
+                                            description: model.title,
+                                            commentsCount: model.commentsCount,
+                                            thumb: nil)
+            
+            cell.model = cellModel
+            
+            return cell
+        case .LoadingCell:
+            return tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if Sections(rawValue: indexPath.section)! == .LoadingCell {
+            if let loadingCell = cell as? LoadingCell, viewModel.isLoadingEntries.value == false {
+                loadingCell.loadingIndicator.startAnimating()
+            }
+            
+            viewModel.loadMoreEntries()
+        }
     }
     
 }
@@ -70,7 +131,12 @@ extension EntriesListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        viewModel.showPicture(for: "")
+        
+        if Sections(rawValue: indexPath.section)! == .Entries {
+            guard let cell = tableView.cellForRow(at: indexPath) as? EntryCell, let entryID = cell.model?.ID else { return }
+
+            viewModel.showPicture(for: entryID)
+        }
     }
     
 }
