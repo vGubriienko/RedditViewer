@@ -13,6 +13,8 @@
 		710D4D3320F3F77100E139BE /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D4D3220F3F77100E139BE /* Observable.swift */; };
 		710D4D3720F3FB7300E139BE /* RedditDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D4D3620F3FB7300E139BE /* RedditDataProvider.swift */; };
 		710D4D3920F4026E00E139BE /* RedditDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D4D3820F4026E00E139BE /* RedditDecodable.swift */; };
+		7112123220F6A1E2003249CC /* PictureSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7112123120F6A1E2003249CC /* PictureSaver.swift */; };
+		7112123420F6A359003249CC /* DeviceLibraryPictureSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7112123320F6A359003249CC /* DeviceLibraryPictureSaver.swift */; };
 		716EB15420F22EA3001A6B37 /* EntriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716EB15320F22EA3001A6B37 /* EntriesListViewController.swift */; };
 		716EB15720F23BB8001A6B37 /* PicturePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716EB15620F23BB8001A6B37 /* PicturePreviewViewController.swift */; };
 		716EB15920F244F9001A6B37 /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716EB15820F244F9001A6B37 /* EntryCell.swift */; };
@@ -58,6 +60,8 @@
 		710D4D3220F3F77100E139BE /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		710D4D3620F3FB7300E139BE /* RedditDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditDataProvider.swift; sourceTree = "<group>"; };
 		710D4D3820F4026E00E139BE /* RedditDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditDecodable.swift; sourceTree = "<group>"; };
+		7112123120F6A1E2003249CC /* PictureSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureSaver.swift; sourceTree = "<group>"; };
+		7112123320F6A359003249CC /* DeviceLibraryPictureSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLibraryPictureSaver.swift; sourceTree = "<group>"; };
 		716EB15120F22C84001A6B37 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		716EB15320F22EA3001A6B37 /* EntriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesListViewController.swift; sourceTree = "<group>"; };
 		716EB15620F23BB8001A6B37 /* PicturePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturePreviewViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				710D4D3520F3FB5A00E139BE /* RedditDataProvider */,
+				7112123320F6A359003249CC /* DeviceLibraryPictureSaver.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				71F71EE120F556A4007330A9 /* RedditPictureProvider.swift */,
+				7112123120F6A1E2003249CC /* PictureSaver.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -496,6 +502,8 @@
 				7186312F20F2259600D5A118 /* AppDelegate.swift in Sources */,
 				71DAAB8020F25A7600695874 /* RouterImp.swift in Sources */,
 				716EB15720F23BB8001A6B37 /* PicturePreviewViewController.swift in Sources */,
+				7112123220F6A1E2003249CC /* PictureSaver.swift in Sources */,
+				7112123420F6A359003249CC /* DeviceLibraryPictureSaver.swift in Sources */,
 				710D4D3120F3F26700E139BE /* RedditEntriesProviderPagingImp.swift in Sources */,
 				710D4D3720F3FB7300E139BE /* RedditDataProvider.swift in Sources */,
 				71DAAB8520F25B8600695874 /* CoordinatorFactory.swift in Sources */,

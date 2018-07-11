@@ -11,16 +11,28 @@ import UIKit
 
 class PicturePreviewViewModelImp: PicturePreviewViewModel, PicturePreviewModuleIO {
     
+    // MARK: - Public Properties
+    
     let image = Observable<UIImage?>(nil)
     let isLoadingImage = Observable(false)
     
+    var showMessageRequested: ((_ message: String) -> Void)?
+    
+    // MARK: - Private Properties
+    
     private let picture: Picture
     private let pictureProvider: RedditPictureProvider
+    private let pictureSaver: PictureSaver
     
-    init(picture: Picture, pictureProvider: RedditPictureProvider) {
+    // MARK: - Lifecycle
+    
+    init(picture: Picture, pictureProvider: RedditPictureProvider, pictureSaver: PictureSaver) {
         self.picture = picture
         self.pictureProvider = pictureProvider
+        self.pictureSaver = pictureSaver
     }
+    
+    // MARK: - Public Methods
     
     func refreshImage() {
         guard isLoadingImage.value == false else { return }
@@ -38,6 +50,21 @@ class PicturePreviewViewModelImp: PicturePreviewViewModel, PicturePreviewModuleI
             }
             
             self.isLoadingImage.value = false
+        }
+    }
+    
+    func savePicture() {
+        guard let image = image.value else {
+            fatalError("Image must exists when trying to save")
+        }
+        
+        pictureSaver.save(image: image) { [weak self] result in
+            switch result {
+            case .success:
+                self?.showMessageRequested?("Picture successfully saved.")
+            case .failure(let error):
+                self?.showMessageRequested?(error.localizedDescription)
+            }
         }
     }
     

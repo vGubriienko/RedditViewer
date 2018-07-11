@@ -6,7 +6,7 @@
 //  Copyright © 2018 Viktor Gubriienko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 class PictureViewerCoordinator: BaseCoordinator {
@@ -24,6 +24,14 @@ class PictureViewerCoordinator: BaseCoordinator {
     override func start() {
         let module = moduleFactory.makePicturePreviewModule(picture: picture)
         router.present(module.presentable)
+
+        //TODO: refactor to avoid using VC directly
+        let presentedVC = module.presentable
+        module.moduleIO.showMessageRequested = { message in
+            let alertVC = UIAlertController(title: "Picture preview", message: message, preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            presentedVC.toPresent()?.present(alertVC, animated: true, completion: nil)
+        }
     }
-    
+
 }
