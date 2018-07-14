@@ -32,8 +32,6 @@ class EntriesListViewController: UIViewController, MVVMViewController {
 
         setupTableView()
         bindViewModel()
-        
-        viewModel.refreshEntries()
     }
     
     // MARK: - Private Methods

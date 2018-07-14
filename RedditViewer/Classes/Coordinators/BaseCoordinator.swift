@@ -11,10 +11,16 @@ import Foundation
 
 class BaseCoordinator: Coordinator {
     
-    private(set) var childCoordinators: [Coordinator] = []
+    private (set) var childCoordinators: [Coordinator] = []
 
-    func start() { }
+    func start(with restorationState: AppStateProtocol?) {
+        fatalError("Must be implemented in subclasses")
+    }
 
+    func saveState() {
+        fatalError("Must be implemented in subclasses")
+    }
+    
     func addDependency(_ coordinator: Coordinator) {
         for element in childCoordinators where element === coordinator {
             return

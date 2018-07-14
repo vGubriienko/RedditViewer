@@ -10,5 +10,6 @@ import Foundation
 
 
 protocol Coordinator: class {
-    func start()
+    func start(with restorationState: AppStateProtocol?)
+    func saveState()
 }

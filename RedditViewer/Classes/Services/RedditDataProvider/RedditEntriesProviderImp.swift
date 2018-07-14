@@ -11,16 +11,6 @@ import Foundation
 
 extension RedditDataProvider: RedditEntriesProvider {
     
-    struct RedditEntryImp: RedditEntry {
-        let ID: EntryID
-        let author: String
-        let postDate: Date
-        let title: String
-        let commentsCount: UInt
-        let thumbURL: URL?
-        let pictureURL: URL?
-    }
-    
     private struct Cursor: RedditEntriesProviderCursor {
         let fullname: String?
     }
@@ -28,7 +18,6 @@ extension RedditDataProvider: RedditEntriesProvider {
     func provideEntries(with paging: RedditEntriesProviderPaging, completion: @escaping (RedditEntriesProviderResult) -> Void) {
         
         var queryItems = [URLQueryItem]()
-        
         
         var urlComponents = URLComponents(string: Constants.topPath)!
         
@@ -69,14 +58,14 @@ extension RedditDataProvider: RedditEntriesProvider {
     
     private func parse(decodable: RedditTopEntriesServerModel) -> [RedditEntry] {
         return decodable.data.children.map {
-            RedditEntryImp(ID: $0.data.id,
-                           author: $0.data.author,
-                           postDate: Date(timeIntervalSince1970: $0.data.cratedAt),
-                           title: $0.data.title,
-                           commentsCount: $0.data.commentsCount,
-                           thumbURL: ($0.data.thumbnail?.host != nil) ? $0.data.thumbnail : nil,
-                           pictureURL: $0.data.preview?.images.first?.source.url)
+            RedditEntry(ID: $0.data.id,
+                        author: $0.data.author,
+                        postDate: Date(timeIntervalSince1970: $0.data.cratedAt),
+                        title: $0.data.title,
+                        commentsCount: $0.data.commentsCount,
+                        thumbURL: ($0.data.thumbnail?.host != nil) ? $0.data.thumbnail : nil,
+                        pictureURL: $0.data.preview?.images.first?.source.url)
         }
     }
-
+    
 }

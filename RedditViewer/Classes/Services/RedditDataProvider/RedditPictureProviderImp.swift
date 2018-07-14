@@ -25,7 +25,7 @@ extension RedditDataProvider: RedditPictureProvider {
             switch result {
             case .success(let data):
                 if let data = data {
-                    if let image = UIImage(data: data) { // TODO: Check scale
+                    if let image = UIImage(data: data, scale: UIScreen.main.scale) {
                         completionResult = .success(picture: image)
                     } else {
                         completionResult = .failure(error: PictureProviderError.dataIsNotAnImage)

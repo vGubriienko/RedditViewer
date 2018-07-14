@@ -12,10 +12,6 @@ import Foundation
 
 class EntriesListViewModelImp: EntriesListViewModel, EntriesListModuleIO {
     
-    private struct PictureWrapper: Picture {
-        let pictureURL: URL
-    }
-    
     // MARK: - EntriesModuleIO
     
     var onSelectPicture: ((Picture) -> Void)?
@@ -29,11 +25,17 @@ class EntriesListViewModelImp: EntriesListViewModel, EntriesListModuleIO {
     
     private let entriesProvider: RedditEntriesProvider
     private var entriesCursor: RedditEntriesProviderCursor?
+    private let appRestorationState: AppStateProtocol?
     
     // MARK: - Lifecycle
     
-    init(entriesProvider: RedditEntriesProvider) {
+    init(with appRestorationState: AppStateProtocol?, entriesProvider: RedditEntriesProvider) {
         self.entriesProvider = entriesProvider
+        self.appRestorationState = appRestorationState
+        
+        let state: EntriesListRestorationState? = appRestorationState?.getState()
+        
+        state?.entries.flatMap { self.entries.value = $0 }
     }
     
     // MARK: - EntriesListViewModel
@@ -41,15 +43,13 @@ class EntriesListViewModelImp: EntriesListViewModel, EntriesListModuleIO {
     func refreshEntries() {
         entriesCursor = nil
         entries.value.removeAll()
-        // TODO: update UI
-        
+
         loadMoreEntries()
     }
     
     func loadMoreEntries() {
         guard isLoadingEntries.value == false else { return }
         
-        // TODO: show spinner
         isLoadingEntries.value = true
         let paging = RedditEntriesProviderPagingImp(cursor: entriesCursor, limit: 50)
         
@@ -60,21 +60,25 @@ class EntriesListViewModelImp: EntriesListViewModel, EntriesListModuleIO {
             case .success(let entries, let cursor):
                 self.entriesCursor = cursor
                 self.entries.value.append(contentsOf: entries)
-            // TODO: update table
             case .failure(let error):
                 print(error)
-                // TODO: show error
             }
             
             self.isLoadingEntries.value = false
-            // TODO: hide spinner
         }
     }
 
     func showPicture(for entryID: EntryID) {
         guard let pictureURL = entries.value.first(where: { $0.ID == entryID })?.pictureURL else { return }
         
-        onSelectPicture?(PictureWrapper(pictureURL: pictureURL))
+        onSelectPicture?(Picture(pictureURL: pictureURL))
     }
     
+    func saveState() {
+        let moduleState: EntriesListRestorationState = appRestorationState?.getState() ?? EntriesListRestorationState()
+        
+        moduleState.entries = entries.value
+        
+        appRestorationState?.setState(moduleState)
+    }
 }

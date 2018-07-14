@@ -9,12 +9,12 @@
 import Foundation
 
 
-protocol RedditEntry {
-    var ID: EntryID { get }
-    var author: String { get }
-    var postDate: Date { get }
-    var title: String { get }
-    var commentsCount: UInt { get }
-    var thumbURL: URL? { get }
-    var pictureURL: URL? { get }
+struct RedditEntry: Codable {
+    let ID: EntryID
+    let author: String
+    let postDate: Date
+    let title: String
+    let commentsCount: UInt
+    let thumbURL: URL?
+    let pictureURL: URL?
 }
