@@ -22,6 +22,7 @@
 		7186313420F2259600D5A118 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7186313220F2259600D5A118 /* Main.storyboard */; };
 		7186313620F2259700D5A118 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7186313520F2259700D5A118 /* Assets.xcassets */; };
 		7186313920F2259700D5A118 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7186313720F2259700D5A118 /* LaunchScreen.storyboard */; };
+		71AA03AD20FA233300266FE7 /* UIImageView+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AA03AC20FA233300266FE7 /* UIImageView+URL.swift */; };
 		71DAAB7220F2554600695874 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DAAB7120F2554600695874 /* Coordinator.swift */; };
 		71DAAB7920F2570900695874 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DAAB7820F2570900695874 /* BaseCoordinator.swift */; };
 		71DAAB7B20F2598F00695874 /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DAAB7A20F2598F00695874 /* ApplicationCoordinator.swift */; };
@@ -72,6 +73,7 @@
 		7186313520F2259700D5A118 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7186313820F2259700D5A118 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7186313A20F2259700D5A118 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71AA03AC20FA233300266FE7 /* UIImageView+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+URL.swift"; sourceTree = "<group>"; };
 		71DAAB7120F2554600695874 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		71DAAB7820F2570900695874 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		71DAAB7A20F2598F00695874 /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				71DAAB9B20F263A400695874 /* UIViewController+Storyboards.swift */,
 				71DAAB9D20F264A000695874 /* NSObject+ClassName.swift */,
 				710D4D3220F3F77100E139BE /* Observable.swift */,
+				71AA03AC20FA233300266FE7 /* UIImageView+URL.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				716EB15420F22EA3001A6B37 /* EntriesListViewController.swift in Sources */,
 				71DAAB9E20F264A000695874 /* NSObject+ClassName.swift in Sources */,
 				710D4D3320F3F77100E139BE /* Observable.swift in Sources */,
+				71AA03AD20FA233300266FE7 /* UIImageView+URL.swift in Sources */,
 				71DAAB9C20F263A400695874 /* UIViewController+Storyboards.swift in Sources */,
 				71DAAB7220F2554600695874 /* Coordinator.swift in Sources */,
 				710D4D2F20F3EF8300E139BE /* RedditEntriesProvider.swift in Sources */,

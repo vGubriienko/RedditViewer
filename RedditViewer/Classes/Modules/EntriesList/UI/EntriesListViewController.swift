@@ -21,7 +21,7 @@ class EntriesListViewController: UIViewController, MVVMViewController {
     
     // MARK: - Private Properties
     
-    let refreshControl: UIRefreshControl = UIRefreshControl()
+    let refreshControl = UIRefreshControl()
     
     // MARK: - Lifecycle
     
@@ -42,7 +42,7 @@ class EntriesListViewController: UIViewController, MVVMViewController {
         entriesTableView.tableFooterView = UIView(frame: CGRect.zero)
         
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
-        //refreshControl.tintColor = UIColor.red
+        refreshControl.tintColor = .white
         entriesTableView.addSubview(refreshControl)
     }
     
@@ -95,24 +95,36 @@ extension EntriesListViewController: UITableViewDataSource {
         case .Entries:
             let cell = tableView.dequeueReusableCell(withIdentifier: "EntryCell", for: indexPath) as! EntryCell
             
-            // TODO: move out conversion
-            // TODO: add thumb loading
             let model = viewModel.entries.value[indexPath.row]
             
-            let cellModel = EntryCell.Model(ID: model.ID,
-                                            author: model.author,
-                                            postDate: model.postDate,
-                                            description: model.title,
-                                            commentsCount: model.commentsCount,
-                                            thumb: nil)
-            
-            cell.model = cellModel
+            configureCell(cell, with: model)
             
             return cell
         case .LoadingCell:
             return tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath)
         }
     }
+    
+    private func configureCell(_ cell: EntryCell, with entry: RedditEntry) {
+        let cellModel = EntryCell.Model(ID: entry.ID,
+                                        author: entry.author,
+                                        postDate: entry.postDate,
+                                        description: entry.title,
+                                        commentsCount: entry.commentsCount,
+                                        thumbURL: entry.thumbURL)
+        
+        cell.model = cellModel
+        
+        cell.onTapThumb = { [weak self] model in
+            guard let entryID = model?.ID else { return }
+            
+            self?.viewModel.showPicture(for: entryID)
+        }
+    }
+    
+}
+
+extension EntriesListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if Sections(rawValue: indexPath.section)! == .LoadingCell {
@@ -121,21 +133,6 @@ extension EntriesListViewController: UITableViewDataSource {
             }
             
             viewModel.loadMoreEntries()
-        }
-    }
-    
-}
-
-// TabeView Delegate mock
-extension EntriesListViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        if Sections(rawValue: indexPath.section)! == .Entries {
-            guard let cell = tableView.cellForRow(at: indexPath) as? EntryCell, let entryID = cell.model?.ID else { return }
-
-            viewModel.showPicture(for: entryID)
         }
     }
     
