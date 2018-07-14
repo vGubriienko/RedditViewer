@@ -50,7 +50,7 @@ class PicturePreviewViewController: UIViewController, MVVMViewController {
     // MARK: - Actions
     
     @IBAction private func tapClose() {
-        dismiss(animated: true, completion: nil)
+        viewModel.finishFlow()
     }
     
     @IBAction private func tapSave() {

@@ -16,5 +16,6 @@ protocol PicturePreviewViewModel: class, MVVMViewModel {
     
     func refreshImage()
     func savePicture()
+    func finishFlow()
     
 }

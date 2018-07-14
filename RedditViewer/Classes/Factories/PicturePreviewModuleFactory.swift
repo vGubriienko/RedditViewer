@@ -11,6 +11,7 @@ import Foundation
 
 protocol PicturePreviewModuleIO: class {
     var showMessageRequested: ((_ message: String) -> Void)? { get set }
+    var onFinishFlow: (() -> Void)? { get set }
 }
 
 

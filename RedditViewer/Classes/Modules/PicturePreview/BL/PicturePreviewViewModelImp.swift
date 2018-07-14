@@ -17,6 +17,7 @@ class PicturePreviewViewModelImp: PicturePreviewViewModel, PicturePreviewModuleI
     let isLoadingImage = Observable(false)
     
     var showMessageRequested: ((_ message: String) -> Void)?
+    var onFinishFlow: (() -> Void)?
     
     // MARK: - Private Properties
     
@@ -45,8 +46,9 @@ class PicturePreviewViewModelImp: PicturePreviewViewModel, PicturePreviewModuleI
             case .success(let picture):
                 self.image.value = picture
             case .failure(let error):
-                // TODO: handle error
                 print("Loading image error: \(error)")
+                
+                self.onFinishFlow?()
             }
             
             self.isLoadingImage.value = false
@@ -66,6 +68,10 @@ class PicturePreviewViewModelImp: PicturePreviewViewModel, PicturePreviewModuleI
                 self?.showMessageRequested?(error.localizedDescription)
             }
         }
+    }
+    
+    func finishFlow() {
+        onFinishFlow?()
     }
     
 }

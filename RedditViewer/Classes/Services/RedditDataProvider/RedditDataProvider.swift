@@ -11,6 +11,10 @@ import Foundation
 
 class RedditDataProvider {
     
+    enum Error: Swift.Error {
+        case httpStatusError(statusCode: Int)
+    }
+    
     enum DownloadResult {
         case success(data: Data?)
         case failure(error: Swift.Error)
@@ -42,6 +46,8 @@ class RedditDataProvider {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 completion(.failure(error: error))
+            } else if let response = response as? HTTPURLResponse, response.statusCode >= 400 {
+                completion(.failure(error: Error.httpStatusError(statusCode: response.statusCode)))
             } else {
                 completion(.success(data: data))
             }
