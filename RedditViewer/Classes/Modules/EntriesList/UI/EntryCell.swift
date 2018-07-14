@@ -60,7 +60,7 @@ class EntryCell: UITableViewCell {
     
     private func configureWithModel(_ model: Model?) {
         if let model = model {
-            titleLabel.text = "posted by \(model.author) at \(model.postDate)" //TODO: set proper string
+            titleLabel.text = "posted by \(model.author)\(String.timeAgo(from: model.postDate))"
             descriptionLabel.text = model.description
             if let thumbURL = model.thumbURL {
                 thumbImageView.setImage(from: thumbURL, placeholder: #imageLiteral(resourceName: "no-image-small"))
@@ -95,4 +95,5 @@ class EntryCell: UITableViewCell {
     @objc private func tapThumb(_ sender: UITapGestureRecognizer) {
         onTapThumb?(model)
     }
+    
 }
