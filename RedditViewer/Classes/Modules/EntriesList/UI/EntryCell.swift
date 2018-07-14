@@ -17,28 +17,32 @@ class EntryCell: UITableViewCell {
         let postDate: Date
         let description: String
         let commentsCount: UInt
-        let thumb: UIImage?
+        let thumbURL: URL?
     }
 
     // MARK: - Outlets
     
-    @IBOutlet private weak var thumbButton: UIButton!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var commentsCountLabel: UILabel!
+    @IBOutlet private weak var thumbImageView: UIImageView!
     
     // MARK: - Public Properties
+    
+    var onTapThumb: ((_ model: Model?) -> Void)?
     
     var model: Model? {
         didSet {
             configureWithModel(model)
         }
     }
-    
+
     // MARK: - Lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        setupThumbTapRecognizer()
     }
     
     override func prepareForReuse() {
@@ -49,11 +53,24 @@ class EntryCell: UITableViewCell {
 
     // MARK: - Private properties
     
+    private func setupThumbTapRecognizer() {
+        let tapThumbGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapThumb))
+        thumbImageView.addGestureRecognizer(tapThumbGestureRecognizer)
+    }
+    
     private func configureWithModel(_ model: Model?) {
         if let model = model {
             titleLabel.text = "posted by \(model.author) at \(model.postDate)" //TODO: set proper string
             descriptionLabel.text = model.description
-            thumbButton.setImage(model.thumb ?? #imageLiteral(resourceName: "no-image-small"), for: .normal)
+            if let thumbURL = model.thumbURL {
+                thumbImageView.setImage(from: thumbURL, placeholder: #imageLiteral(resourceName: "no-image-small"))
+                thumbImageView.isHidden = false
+            } else {
+                thumbImageView.cancelDownloadingImage()
+                thumbImageView.image = nil
+                thumbImageView.isHidden = true
+            }
+            
             
             switch model.commentsCount {
             case 0:
@@ -66,9 +83,16 @@ class EntryCell: UITableViewCell {
         } else {
             titleLabel.text = nil
             descriptionLabel.text = nil
-            thumbButton.setImage(#imageLiteral(resourceName: "no-image-small"), for: .normal)
             commentsCountLabel.text = nil
+            thumbImageView.cancelDownloadingImage()
+            thumbImageView.image = nil
+            thumbImageView.isHidden = true
         }
     }
     
+    // MARK: - Actions
+    
+    @objc private func tapThumb(_ sender: UITapGestureRecognizer) {
+        onTapThumb?(model)
+    }
 }
