@@ -11,13 +11,13 @@ import UIKit
 
 extension RedditDataProvider: RedditPictureProvider {
     
-    enum Error: Swift.Error {
+    enum PictureProviderError: Swift.Error {
         case noData
         case dataIsNotAnImage
     }
     
     func providePicture(_ picture: Picture, completion: @escaping (RedditPictureProviderResult) -> Void) {
-        let request = URLRequest(url: picture.pictureURL)
+        let request = URLRequest(url: picture.pictureURL, cachePolicy: .reloadRevalidatingCacheData, timeoutInterval: 30.0)
         
         downloadData(with: request) { result in
             var completionResult: RedditPictureProviderResult
@@ -28,10 +28,10 @@ extension RedditDataProvider: RedditPictureProvider {
                     if let image = UIImage(data: data) { // TODO: Check scale
                         completionResult = .success(picture: image)
                     } else {
-                        completionResult = .failure(error: Error.dataIsNotAnImage)
+                        completionResult = .failure(error: PictureProviderError.dataIsNotAnImage)
                     }
                 } else {
-                    completionResult = .failure(error: Error.noData)
+                    completionResult = .failure(error: PictureProviderError.noData)
                 }
             case .failure(let error):
                 completionResult = .failure(error: error)

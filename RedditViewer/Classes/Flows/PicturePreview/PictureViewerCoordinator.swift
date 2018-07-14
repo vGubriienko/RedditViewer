@@ -9,8 +9,10 @@
 import UIKit
 
 
-class PictureViewerCoordinator: BaseCoordinator {
+class PictureViewerCoordinator: BaseCoordinator, PictureViewerCoordinatorIO {
     
+    var onFinishFlow: (() -> Void)?
+
     private let router: Router
     private let moduleFactory: PicturePreviewModuleFactory
     private let picture: Picture
@@ -31,6 +33,11 @@ class PictureViewerCoordinator: BaseCoordinator {
             let alertVC = UIAlertController(title: "Picture preview", message: message, preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             presentedVC.toPresent()?.present(alertVC, animated: true, completion: nil)
+        }
+        
+        module.moduleIO.onFinishFlow = { [weak self] in
+            self?.router.dismissModule()
+            self?.onFinishFlow?()
         }
     }
 

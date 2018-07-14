@@ -9,9 +9,14 @@
 import Foundation
 
 
+protocol PictureViewerCoordinatorIO: class {
+    var onFinishFlow: (() -> Void)? { get set }
+}
+
+
 protocol CoordinatorFactory {
     
     func makeTopEntriesCoordinator(router: Router) -> Coordinator
-    func makePicturePreviewCoordinator(router: Router, picture: Picture) -> Coordinator
+    func makePicturePreviewCoordinator(router: Router, picture: Picture) -> Coordinator & PictureViewerCoordinatorIO
 
 }

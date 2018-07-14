@@ -15,7 +15,7 @@ final class CoordinatorFactoryImp: CoordinatorFactory {
         return TopEntriesCoordinator(router: router, coordinatorFactory: CoordinatorFactoryImp(), moduleFactory: ModuleFactoryImp())
     }
     
-    func makePicturePreviewCoordinator(router: Router, picture: Picture) -> Coordinator {
+    func makePicturePreviewCoordinator(router: Router, picture: Picture) -> Coordinator & PictureViewerCoordinatorIO {
         return PictureViewerCoordinator(router: router, moduleFactory: ModuleFactoryImp(), picture: picture)
     }
 

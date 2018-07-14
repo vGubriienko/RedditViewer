@@ -34,6 +34,11 @@ class TopEntriesCoordinator: BaseCoordinator {
     private func runPictureViewerFlow(picture: Picture) {
         let coordinator = coordinatorFactory.makePicturePreviewCoordinator(router: router, picture: picture)
         addDependency(coordinator)
+        
+        coordinator.onFinishFlow = { [weak self, weak coordinator] in
+            self?.removeDependency(coordinator)
+        }
+        
         coordinator.start()
     }
     
