@@ -15,5 +15,6 @@ protocol PicturePreviewViewModel: class, MVVMViewModel {
     var isLoadingImage: Observable<Bool> { get }
     
     func refreshImage()
+    func savePicture()
     
 }

@@ -19,7 +19,7 @@ final class ModuleFactoryImp: TopEntriesModuleFactory, PicturePreviewModuleFacto
     }
     
     func makePicturePreviewModule(picture: Picture) -> (moduleIO: PicturePreviewModuleIO, presentable: Presentable) {
-        let viewModel = PicturePreviewViewModelImp(picture: picture, pictureProvider: RedditDataProvider())
+        let viewModel = PicturePreviewViewModelImp(picture: picture, pictureProvider: RedditDataProvider(), pictureSaver: DeviceLibraryPictureSaver())
         let previewVC = PicturePreviewViewController.controllerFromStoryboard(.main, viewModel: viewModel)
         return (viewModel, previewVC)
     }

@@ -54,7 +54,7 @@ class PicturePreviewViewController: UIViewController, MVVMViewController {
     }
     
     @IBAction private func tapSave() {
-        // TODO: implement saving
+        viewModel.savePicture()
     }
     
 }
