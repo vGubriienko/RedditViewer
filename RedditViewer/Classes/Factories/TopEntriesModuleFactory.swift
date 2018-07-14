@@ -11,6 +11,6 @@ import Foundation
 
 protocol TopEntriesModuleFactory: class {
     
-    func makeTopEntriesModule() -> (moduleIO: EntriesListModuleIO, presentable: Presentable)
+    func makeTopEntriesModule(with appRestorationState: AppStateProtocol?) -> (moduleIO: EntriesListModuleIO, presentable: Presentable)
     
 }

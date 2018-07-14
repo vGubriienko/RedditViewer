@@ -24,6 +24,13 @@
 		7186313920F2259700D5A118 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7186313720F2259700D5A118 /* LaunchScreen.storyboard */; };
 		71AA03AD20FA233300266FE7 /* UIImageView+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AA03AC20FA233300266FE7 /* UIImageView+URL.swift */; };
 		71AA03AF20FA3CBC00266FE7 /* String+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AA03AE20FA3CBC00266FE7 /* String+Date.swift */; };
+		71AA03B120FA59BA00266FE7 /* AppStateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AA03B020FA59BA00266FE7 /* AppStateService.swift */; };
+		71AA03B420FA66F700266FE7 /* AppStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AA03B320FA66F700266FE7 /* AppStateProtocol.swift */; };
+		71AA03B620FA673400266FE7 /* AppStateImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AA03B520FA673400266FE7 /* AppStateImp.swift */; };
+		71AA03B820FA691800266FE7 /* EntriesListRestorationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AA03B720FA691800266FE7 /* EntriesListRestorationState.swift */; };
+		71AA03BB20FA696C00266FE7 /* PicturePreviewRestorationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AA03BA20FA696C00266FE7 /* PicturePreviewRestorationState.swift */; };
+		71AA03BD20FA6DF000266FE7 /* ApplicationCoordinatorRestorationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AA03BC20FA6DF000266FE7 /* ApplicationCoordinatorRestorationState.swift */; };
+		71AA03BF20FA7FDE00266FE7 /* RestorationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AA03BE20FA7FDE00266FE7 /* RestorationState.swift */; };
 		71DAAB7220F2554600695874 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DAAB7120F2554600695874 /* Coordinator.swift */; };
 		71DAAB7920F2570900695874 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DAAB7820F2570900695874 /* BaseCoordinator.swift */; };
 		71DAAB7B20F2598F00695874 /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DAAB7A20F2598F00695874 /* ApplicationCoordinator.swift */; };
@@ -76,6 +83,13 @@
 		7186313A20F2259700D5A118 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71AA03AC20FA233300266FE7 /* UIImageView+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+URL.swift"; sourceTree = "<group>"; };
 		71AA03AE20FA3CBC00266FE7 /* String+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Date.swift"; sourceTree = "<group>"; };
+		71AA03B020FA59BA00266FE7 /* AppStateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateService.swift; sourceTree = "<group>"; };
+		71AA03B320FA66F700266FE7 /* AppStateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateProtocol.swift; sourceTree = "<group>"; };
+		71AA03B520FA673400266FE7 /* AppStateImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateImp.swift; sourceTree = "<group>"; };
+		71AA03B720FA691800266FE7 /* EntriesListRestorationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesListRestorationState.swift; sourceTree = "<group>"; };
+		71AA03BA20FA696C00266FE7 /* PicturePreviewRestorationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturePreviewRestorationState.swift; sourceTree = "<group>"; };
+		71AA03BC20FA6DF000266FE7 /* ApplicationCoordinatorRestorationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinatorRestorationState.swift; sourceTree = "<group>"; };
+		71AA03BE20FA7FDE00266FE7 /* RestorationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorationState.swift; sourceTree = "<group>"; };
 		71DAAB7120F2554600695874 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		71DAAB7820F2570900695874 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		71DAAB7A20F2598F00695874 /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
@@ -123,6 +137,7 @@
 			children = (
 				710D4D2C20F3EEF800E139BE /* RedditEntry.swift */,
 				710D4D3020F3F26700E139BE /* RedditEntriesProviderPagingImp.swift */,
+				71AA03B720FA691800266FE7 /* EntriesListRestorationState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -138,6 +153,7 @@
 		710D4D3420F3FB4D00E139BE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				71AA03B220FA66E400266FE7 /* AppState */,
 				710D4D3520F3FB5A00E139BE /* RedditDataProvider */,
 				7112123320F6A359003249CC /* DeviceLibraryPictureSaver.swift */,
 			);
@@ -226,6 +242,26 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		71AA03B220FA66E400266FE7 /* AppState */ = {
+			isa = PBXGroup;
+			children = (
+				71AA03B320FA66F700266FE7 /* AppStateProtocol.swift */,
+				71AA03B020FA59BA00266FE7 /* AppStateService.swift */,
+				71AA03B520FA673400266FE7 /* AppStateImp.swift */,
+				71AA03BE20FA7FDE00266FE7 /* RestorationState.swift */,
+			);
+			path = AppState;
+			sourceTree = "<group>";
+		};
+		71AA03B920FA695E00266FE7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7112123120F6A1E2003249CC /* PictureSaver.swift */,
+				71AA03BA20FA696C00266FE7 /* PicturePreviewRestorationState.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		71DAAB7020F2553200695874 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				71F71EE020F5568C007330A9 /* Services */,
+				71AA03B920FA695E00266FE7 /* Models */,
 				71DAAB9520F260DC00695874 /* BL */,
 				71DAAB7720F256B900695874 /* UI */,
 			);
@@ -358,6 +395,7 @@
 			children = (
 				7186312E20F2259600D5A118 /* AppDelegate.swift */,
 				71DAAB7A20F2598F00695874 /* ApplicationCoordinator.swift */,
+				71AA03BC20FA6DF000266FE7 /* ApplicationCoordinatorRestorationState.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -400,7 +438,6 @@
 			isa = PBXGroup;
 			children = (
 				71F71EE120F556A4007330A9 /* RedditPictureProvider.swift */,
-				7112123120F6A1E2003249CC /* PictureSaver.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -484,9 +521,11 @@
 				710D4D2D20F3EEF800E139BE /* RedditEntry.swift in Sources */,
 				71DAABB220F2760B00695874 /* Picture.swift in Sources */,
 				71DAAB9920F2614400695874 /* PicturePreviewViewModelImp.swift in Sources */,
+				71AA03BB20FA696C00266FE7 /* PicturePreviewRestorationState.swift in Sources */,
 				71DAABA020F265D500695874 /* Storyboards.swift in Sources */,
 				71DAAB7E20F25A5300695874 /* Router.swift in Sources */,
 				71AA03AF20FA3CBC00266FE7 /* String+Date.swift in Sources */,
+				71AA03B420FA66F700266FE7 /* AppStateProtocol.swift in Sources */,
 				71DAABAF20F275E300695874 /* EntriesListModuleIO.swift in Sources */,
 				716EB15920F244F9001A6B37 /* EntryCell.swift in Sources */,
 				71DAAB9420F25EDC00695874 /* EntriesListViewModelImp.swift in Sources */,
@@ -503,11 +542,14 @@
 				716EB15420F22EA3001A6B37 /* EntriesListViewController.swift in Sources */,
 				71DAAB9E20F264A000695874 /* NSObject+ClassName.swift in Sources */,
 				710D4D3320F3F77100E139BE /* Observable.swift in Sources */,
+				71AA03BD20FA6DF000266FE7 /* ApplicationCoordinatorRestorationState.swift in Sources */,
 				71AA03AD20FA233300266FE7 /* UIImageView+URL.swift in Sources */,
 				71DAAB9C20F263A400695874 /* UIViewController+Storyboards.swift in Sources */,
+				71AA03B620FA673400266FE7 /* AppStateImp.swift in Sources */,
 				71DAAB7220F2554600695874 /* Coordinator.swift in Sources */,
 				710D4D2F20F3EF8300E139BE /* RedditEntriesProvider.swift in Sources */,
 				7186312F20F2259600D5A118 /* AppDelegate.swift in Sources */,
+				71AA03BF20FA7FDE00266FE7 /* RestorationState.swift in Sources */,
 				71DAAB8020F25A7600695874 /* RouterImp.swift in Sources */,
 				716EB15720F23BB8001A6B37 /* PicturePreviewViewController.swift in Sources */,
 				7112123220F6A1E2003249CC /* PictureSaver.swift in Sources */,
@@ -515,8 +557,10 @@
 				710D4D3120F3F26700E139BE /* RedditEntriesProviderPagingImp.swift in Sources */,
 				710D4D3720F3FB7300E139BE /* RedditDataProvider.swift in Sources */,
 				71DAAB8520F25B8600695874 /* CoordinatorFactory.swift in Sources */,
+				71AA03B120FA59BA00266FE7 /* AppStateService.swift in Sources */,
 				71F71EDF20F5416E007330A9 /* LoadingCell.swift in Sources */,
 				71DAABB420F2773A00695874 /* Typealiases.swift in Sources */,
+				71AA03B820FA691800266FE7 /* EntriesListRestorationState.swift in Sources */,
 				71DAAB7B20F2598F00695874 /* ApplicationCoordinator.swift in Sources */,
 				71F71EE220F556A4007330A9 /* RedditPictureProvider.swift in Sources */,
 			);

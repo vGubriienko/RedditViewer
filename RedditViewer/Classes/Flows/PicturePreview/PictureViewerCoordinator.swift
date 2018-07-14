@@ -16,15 +16,18 @@ class PictureViewerCoordinator: BaseCoordinator, PictureViewerCoordinatorIO {
     private let router: Router
     private let moduleFactory: PicturePreviewModuleFactory
     private let picture: Picture
+    private var restorationState: AppStateProtocol?
     
     init(router: Router, moduleFactory: PicturePreviewModuleFactory, picture: Picture) {
         self.router = router
         self.moduleFactory = moduleFactory
         self.picture = picture
     }
-    
-    override func start() {
-        let module = moduleFactory.makePicturePreviewModule(picture: picture)
+
+    override func start(with restorationState: AppStateProtocol?) {
+        self.restorationState = restorationState
+        
+        let module = moduleFactory.makePicturePreviewModule(with: restorationState, picture: picture)
         router.present(module.presentable)
 
         //TODO: refactor to avoid using VC directly
@@ -36,9 +39,18 @@ class PictureViewerCoordinator: BaseCoordinator, PictureViewerCoordinatorIO {
         }
         
         module.moduleIO.onFinishFlow = { [weak self] in
+            self?.restorationState?.setState(Optional<PicturePreviewRestorationState>.none)
             self?.router.dismissModule()
             self?.onFinishFlow?()
         }
+    }
+    
+    override func saveState() {
+        let coordinatorState: PicturePreviewRestorationState = restorationState?.getState() ?? .init()
+        
+        coordinatorState.picture = picture
+        
+        restorationState?.setState(coordinatorState)
     }
 
 }

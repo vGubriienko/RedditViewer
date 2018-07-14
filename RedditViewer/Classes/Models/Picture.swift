@@ -9,6 +9,6 @@
 import Foundation
 
 
-protocol Picture {
-    var pictureURL: URL { get }
+struct Picture: Codable {
+    let pictureURL: URL 
 }

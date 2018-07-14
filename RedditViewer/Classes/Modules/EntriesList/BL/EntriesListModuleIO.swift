@@ -11,4 +11,6 @@ import Foundation
 
 protocol EntriesListModuleIO: class {
     var onSelectPicture: ((_ picture: Picture) -> Void)? { get set }
+    
+    func saveState()
 }

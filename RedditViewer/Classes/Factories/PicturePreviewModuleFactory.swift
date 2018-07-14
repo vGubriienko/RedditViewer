@@ -17,6 +17,6 @@ protocol PicturePreviewModuleIO: class {
 
 protocol PicturePreviewModuleFactory: class {
     
-    func makePicturePreviewModule(picture: Picture) -> (moduleIO: PicturePreviewModuleIO, presentable: Presentable)
+    func makePicturePreviewModule(with appRestorationState: AppStateProtocol?, picture: Picture) -> (moduleIO: PicturePreviewModuleIO, presentable: Presentable)
     
 }

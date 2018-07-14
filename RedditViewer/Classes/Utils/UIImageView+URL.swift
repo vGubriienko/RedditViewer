@@ -67,7 +67,7 @@ fileprivate class ImageDownloader {
         let task = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
             var completionResult = Result.failure
 
-            if error == nil, let data = data, let image = UIImage(data: data) {
+            if error == nil, let data = data, let image = UIImage(data: data, scale: UIScreen.main.scale) {
                 completionResult = .success(image: image)
             }
 

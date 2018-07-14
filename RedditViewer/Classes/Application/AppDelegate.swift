@@ -20,14 +20,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var applicationCoordinator: Coordinator = self.makeCoordinator()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        applicationCoordinator.start()
+
+        applicationCoordinator.start(with: nil)
         
         return true
     }
     
     private func makeCoordinator() -> Coordinator {
-        return ApplicationCoordinator(router: RouterImp(rootController: self.rootController), coordinatorFactory: CoordinatorFactoryImp())
+        var restorationURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        restorationURL.appendPathComponent("restoration.state")
+        let restorationService = AppStateService<AppState>(stateFileURL: restorationURL, statePlaceholder: AppState())
+        
+        return ApplicationCoordinator(router: RouterImp(rootController: self.rootController),
+                                      coordinatorFactory: CoordinatorFactoryImp(),
+                                      appStateService: restorationService)
     }
 
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        applicationCoordinator.saveState()
+    }
+    
 }
 
