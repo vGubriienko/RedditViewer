@@ -26,7 +26,7 @@
 		71AA03AF20FA3CBC00266FE7 /* String+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AA03AE20FA3CBC00266FE7 /* String+Date.swift */; };
 		71AA03B120FA59BA00266FE7 /* AppStateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AA03B020FA59BA00266FE7 /* AppStateService.swift */; };
 		71AA03B420FA66F700266FE7 /* AppStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AA03B320FA66F700266FE7 /* AppStateProtocol.swift */; };
-		71AA03B620FA673400266FE7 /* AppStateImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AA03B520FA673400266FE7 /* AppStateImp.swift */; };
+		71AA03B620FA673400266FE7 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AA03B520FA673400266FE7 /* AppState.swift */; };
 		71AA03B820FA691800266FE7 /* EntriesListRestorationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AA03B720FA691800266FE7 /* EntriesListRestorationState.swift */; };
 		71AA03BB20FA696C00266FE7 /* PicturePreviewRestorationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AA03BA20FA696C00266FE7 /* PicturePreviewRestorationState.swift */; };
 		71AA03BD20FA6DF000266FE7 /* ApplicationCoordinatorRestorationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AA03BC20FA6DF000266FE7 /* ApplicationCoordinatorRestorationState.swift */; };
@@ -85,7 +85,7 @@
 		71AA03AE20FA3CBC00266FE7 /* String+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Date.swift"; sourceTree = "<group>"; };
 		71AA03B020FA59BA00266FE7 /* AppStateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateService.swift; sourceTree = "<group>"; };
 		71AA03B320FA66F700266FE7 /* AppStateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateProtocol.swift; sourceTree = "<group>"; };
-		71AA03B520FA673400266FE7 /* AppStateImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateImp.swift; sourceTree = "<group>"; };
+		71AA03B520FA673400266FE7 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		71AA03B720FA691800266FE7 /* EntriesListRestorationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesListRestorationState.swift; sourceTree = "<group>"; };
 		71AA03BA20FA696C00266FE7 /* PicturePreviewRestorationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturePreviewRestorationState.swift; sourceTree = "<group>"; };
 		71AA03BC20FA6DF000266FE7 /* ApplicationCoordinatorRestorationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinatorRestorationState.swift; sourceTree = "<group>"; };
@@ -247,7 +247,7 @@
 			children = (
 				71AA03B320FA66F700266FE7 /* AppStateProtocol.swift */,
 				71AA03B020FA59BA00266FE7 /* AppStateService.swift */,
-				71AA03B520FA673400266FE7 /* AppStateImp.swift */,
+				71AA03B520FA673400266FE7 /* AppState.swift */,
 				71AA03BE20FA7FDE00266FE7 /* RestorationState.swift */,
 			);
 			path = AppState;
@@ -545,7 +545,7 @@
 				71AA03BD20FA6DF000266FE7 /* ApplicationCoordinatorRestorationState.swift in Sources */,
 				71AA03AD20FA233300266FE7 /* UIImageView+URL.swift in Sources */,
 				71DAAB9C20F263A400695874 /* UIViewController+Storyboards.swift in Sources */,
-				71AA03B620FA673400266FE7 /* AppStateImp.swift in Sources */,
+				71AA03B620FA673400266FE7 /* AppState.swift in Sources */,
 				71DAAB7220F2554600695874 /* Coordinator.swift in Sources */,
 				710D4D2F20F3EF8300E139BE /* RedditEntriesProvider.swift in Sources */,
 				7186312F20F2259600D5A118 /* AppDelegate.swift in Sources */,

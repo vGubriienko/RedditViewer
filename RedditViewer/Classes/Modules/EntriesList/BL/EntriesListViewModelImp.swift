@@ -9,7 +9,6 @@
 import Foundation
 
 
-
 class EntriesListViewModelImp: EntriesListViewModel, EntriesListModuleIO {
     
     // MARK: - EntriesModuleIO
@@ -61,8 +60,8 @@ class EntriesListViewModelImp: EntriesListViewModel, EntriesListModuleIO {
             case .success(let entries, let cursor):
                 self.entriesCursor = cursor
                 self.entries.value.append(contentsOf: entries)
-            case .failure(let error):
-                print(error)
+            case .failure:
+                break
             }
             
             self.isLoadingEntries.value = false
@@ -90,4 +89,5 @@ class EntriesListViewModelImp: EntriesListViewModel, EntriesListModuleIO {
         
         appRestorationState?.setState(moduleState)
     }
+    
 }

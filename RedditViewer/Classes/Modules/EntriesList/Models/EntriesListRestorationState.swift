@@ -9,7 +9,6 @@
 import Foundation
 
 
-
 class EntriesListRestorationState: RestorationState {
     
     static var restorationKey: String { return "EntriesList" }

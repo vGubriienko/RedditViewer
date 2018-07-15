@@ -16,7 +16,5 @@ enum RedditPictureProviderResult {
 
 
 protocol RedditPictureProvider {
-    
     func providePicture(_ picture: Picture, completion: @escaping (RedditPictureProviderResult) -> Void)
-    
 }

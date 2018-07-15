@@ -45,9 +45,7 @@ class PicturePreviewViewModelImp: PicturePreviewViewModel, PicturePreviewModuleI
             switch result {
             case .success(let picture):
                 self.image.value = picture
-            case .failure(let error):
-                print("Loading image error: \(error)")
-                
+            case .failure:
                 self.onFinishFlow?()
             }
             

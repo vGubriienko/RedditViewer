@@ -12,7 +12,7 @@ import UIKit
 class EntryCell: UITableViewCell {
     
     struct Model {
-        let ID: String
+        let ID: EntryID
         let author: String
         let postDate: Date
         let description: String

@@ -1,5 +1,5 @@
 //
-//  AppStateImp.swift
+//  AppState.swift
 //  RedditViewer
 //
 //  Created by Viktor Gubriienko on 7/14/18.
@@ -15,7 +15,7 @@ class AppState: AppStateProtocol {
     var picturePreviewState: PicturePreviewRestorationState?
     var entriesListState: EntriesListRestorationState?
     
-    func setState<State>(_ state: State?) where State: RestorationState {
+    func setState<State: RestorationState>(_ state: State?) {
         switch State.restorationKey {
         case EntriesListRestorationState.restorationKey:            entriesListState = state as? EntriesListRestorationState
         case PicturePreviewRestorationState.restorationKey:         picturePreviewState = state as? PicturePreviewRestorationState

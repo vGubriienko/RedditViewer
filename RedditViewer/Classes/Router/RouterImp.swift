@@ -11,13 +11,19 @@ import UIKit
 
 final class RouterImp: NSObject, Router {
     
+    // MARK: - Private Properties
+    
     private weak var rootController: UINavigationController?
     private var completions: [UIViewController : () -> Void]
+    
+    // MARK: - Lifecycle
     
     init(rootController: UINavigationController) {
         self.rootController = rootController
         completions = [:]
     }
+    
+    // MARK: - Router
     
     func toPresent() -> UIViewController? {
         return rootController
@@ -88,6 +94,8 @@ final class RouterImp: NSObject, Router {
             }
         }
     }
+    
+    // MARK: - Utils
     
     private func runCompletion(for controller: UIViewController) {
         guard let completion = completions[controller] else { return }
