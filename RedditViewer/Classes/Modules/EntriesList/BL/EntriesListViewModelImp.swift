@@ -15,6 +15,7 @@ class EntriesListViewModelImp: EntriesListViewModel, EntriesListModuleIO {
     // MARK: - EntriesModuleIO
     
     var onSelectPicture: ((Picture) -> Void)?
+    var onShowEntryRequested: ((URL) -> Void)?
     
     // MARK: - EntriesListViewModel
     
@@ -73,6 +74,14 @@ class EntriesListViewModelImp: EntriesListViewModel, EntriesListModuleIO {
         
         onSelectPicture?(Picture(pictureURL: pictureURL))
     }
+    
+    func showEntry(with entryID: EntryID) {
+        guard let entryURL = entries.value.first(where: { $0.ID == entryID })?.entryURL else { return }
+        
+        onShowEntryRequested?(entryURL)
+    }
+    
+    // MARK: - EntriesModuleIO
     
     func saveState() {
         let moduleState: EntriesListRestorationState = appRestorationState?.getState() ?? EntriesListRestorationState()

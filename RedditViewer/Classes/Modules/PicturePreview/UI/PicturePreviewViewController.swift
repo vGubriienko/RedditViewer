@@ -16,6 +16,7 @@ class PicturePreviewViewController: UIViewController, MVVMViewController {
     @IBOutlet private weak var saveButton: UIButton!
     @IBOutlet private weak var loadingActivityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var previewImageView: UIImageView!
+    @IBOutlet weak var closeButton: UIButton!
     
     // MARK: - Public Properties
     
@@ -30,10 +31,25 @@ class PicturePreviewViewController: UIViewController, MVVMViewController {
         
         bindViewModel()
         
+        setupButtonShadows()
         viewModel.refreshImage()
     }
     
-    func bindViewModel() {
+    // MARK: - Private methods
+    
+    private func setupButtonShadows() {
+        setupShadow(for: saveButton)
+        setupShadow(for: closeButton)
+    }
+    
+    private func setupShadow(for view: UIView) {
+        view.layer.shadowColor =  UIColor.black.cgColor
+        view.layer.shadowOpacity = 1.0
+        view.layer.shadowRadius = 3.0
+        view.layer.shadowOffset = CGSize.zero
+    }
+    
+    private func bindViewModel() {
         viewModel.image.observe = { [weak self] _, image in
             self?.previewImageView.image = image
             self?.previewImageView.isHidden = (image == nil)

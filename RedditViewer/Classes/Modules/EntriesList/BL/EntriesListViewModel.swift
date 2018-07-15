@@ -17,5 +17,5 @@ protocol EntriesListViewModel: class, MVVMViewModel {
     func refreshEntries()
     func loadMoreEntries()
     func showPicture(for entryID: EntryID)
-    
+    func showEntry(with entryID: EntryID)
 }

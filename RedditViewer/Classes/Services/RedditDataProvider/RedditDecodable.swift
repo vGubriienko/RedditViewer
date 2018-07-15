@@ -35,6 +35,7 @@ struct RedditEntryDataServerModel: Decodable {
         case title
         case id
         case preview
+        case url
         
         case cratedAt = "created_utc"
         case commentsCount = "num_comments"
@@ -47,6 +48,7 @@ struct RedditEntryDataServerModel: Decodable {
     let commentsCount: UInt
     let id: String
     let preview: RedditEntryPreviewServerModel?
+    let url: URL
 }
 
 

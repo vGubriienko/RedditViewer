@@ -22,7 +22,8 @@ class EntryCell: UITableViewCell {
 
     // MARK: - Outlets
     
-    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var authorLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var commentsCountLabel: UILabel!
     @IBOutlet private weak var thumbImageView: UIImageView!
@@ -60,7 +61,8 @@ class EntryCell: UITableViewCell {
     
     private func configureWithModel(_ model: Model?) {
         if let model = model {
-            titleLabel.text = "posted by \(model.author)\(String.timeAgo(from: model.postDate))"
+            authorLabel.text = model.author
+            dateLabel.text = String.timeAgo(from: model.postDate)
             descriptionLabel.text = model.description
             if let thumbURL = model.thumbURL {
                 thumbImageView.setImage(from: thumbURL, placeholder: #imageLiteral(resourceName: "no-image-small"))
@@ -81,7 +83,8 @@ class EntryCell: UITableViewCell {
                 commentsCountLabel.text = "\(model.commentsCount) comments"
             }
         } else {
-            titleLabel.text = nil
+            authorLabel.text = nil
+            dateLabel.text = nil
             descriptionLabel.text = nil
             commentsCountLabel.text = nil
             thumbImageView.cancelDownloadingImage()
