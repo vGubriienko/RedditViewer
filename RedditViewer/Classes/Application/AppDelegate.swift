@@ -11,6 +11,10 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    private struct Constants {
+        static let restorationFileName = "restoration.state"
+    }
+    
     var window: UIWindow?
     
     var rootController: UINavigationController {
@@ -28,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func makeCoordinator() -> Coordinator {
         var restorationURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        restorationURL.appendPathComponent("restoration.state")
+        restorationURL.appendPathComponent(Constants.restorationFileName)
         let restorationService = AppStateService<AppState>(stateFileURL: restorationURL, statePlaceholder: AppState())
         
         return ApplicationCoordinator(router: RouterImp(rootController: self.rootController),

@@ -122,6 +122,7 @@ extension EntriesListViewController: UITableViewDataSource {
     
 }
 
+
 extension EntriesListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
