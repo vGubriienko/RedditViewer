@@ -17,4 +17,5 @@ struct RedditEntry: Codable {
     let commentsCount: UInt
     let thumbURL: URL?
     let pictureURL: URL?
+    let entryURL: URL
 }

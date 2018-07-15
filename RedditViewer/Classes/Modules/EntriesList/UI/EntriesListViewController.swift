@@ -71,8 +71,8 @@ class EntriesListViewController: UIViewController, MVVMViewController {
 extension EntriesListViewController: UITableViewDataSource {
     
     enum Sections: Int {
-        case Entries     = 0
-        case LoadingCell = 1
+        case entries     = 0
+        case loadingCell = 1
         
         static let count = 2
     }
@@ -83,14 +83,14 @@ extension EntriesListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Sections(rawValue: section)! {
-        case .Entries:      return viewModel.entries.value.count
-        case .LoadingCell:  return 1
+        case .entries:      return viewModel.entries.value.count
+        case .loadingCell:  return 1
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch Sections(rawValue: indexPath.section)! {
-        case .Entries:
+        case .entries:
             let cell = tableView.dequeueReusableCell(withIdentifier: "EntryCell", for: indexPath) as! EntryCell
             
             let model = viewModel.entries.value[indexPath.row]
@@ -98,7 +98,7 @@ extension EntriesListViewController: UITableViewDataSource {
             configureCell(cell, with: model)
             
             return cell
-        case .LoadingCell:
+        case .loadingCell:
             return tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath)
         }
     }
@@ -125,12 +125,30 @@ extension EntriesListViewController: UITableViewDataSource {
 extension EntriesListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if Sections(rawValue: indexPath.section)! == .LoadingCell {
+        if Sections(rawValue: indexPath.section)! == .loadingCell {
             if let loadingCell = cell as? LoadingCell, viewModel.isLoadingEntries.value == false {
                 loadingCell.loadingIndicator.startAnimating()
             }
             
             viewModel.loadMoreEntries()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if Sections(rawValue: indexPath.section)! == .loadingCell {
+            return nil
+        } else {
+            return indexPath
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if Sections(rawValue: indexPath.section)! == .entries {
+            if let entryCell = tableView.cellForRow(at: indexPath) as? EntryCell, let model = entryCell.model {
+                viewModel.showEntry(with: model.ID)
+            }
         }
     }
     

@@ -64,7 +64,8 @@ extension RedditDataProvider: RedditEntriesProvider {
                         title: $0.data.title,
                         commentsCount: $0.data.commentsCount,
                         thumbURL: ($0.data.thumbnail?.host != nil) ? $0.data.thumbnail : nil,
-                        pictureURL: $0.data.preview?.images.first?.source.url)
+                        pictureURL: $0.data.preview?.images.first?.source.url,
+                        entryURL: $0.data.url)
         }
     }
     

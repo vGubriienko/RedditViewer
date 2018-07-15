@@ -6,7 +6,7 @@
 //  Copyright © 2018 Viktor Gubriienko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 class TopEntriesCoordinator: BaseCoordinator {
@@ -30,6 +30,10 @@ class TopEntriesCoordinator: BaseCoordinator {
         
         module.moduleIO.onSelectPicture = { [weak self] picture in
             self?.runPictureViewerFlow(picture: picture)
+        }
+        
+        module.moduleIO.onShowEntryRequested = { entryLink in
+            UIApplication.shared.open(entryLink, options: [:], completionHandler: nil)
         }
         
         router.push(module.presentable, animated: false)
